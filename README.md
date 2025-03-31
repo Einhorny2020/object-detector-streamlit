@@ -5,18 +5,11 @@ Cette application détecte automatiquement les objets dans une image grâce à u
 - Image chargée par l’utilisateur
 - Analyse par le modèle Ultralytics
 - Image annotée affichée dans l’interface
-
----
-
-## ▶DÉMO EN LIGNE (Streamlit Cloud)
-
-À venir : https://ton-utilisateur.streamlit.app
-
+- http://localhost:8501
 ---
 
 ## TECH STACK
 
-- Streamlit
 - Ultralytics YOLOv8
 - GitHub Actions (CI)
 - Python 3.10
@@ -25,15 +18,22 @@ Cette application détecte automatiquement les objets dans une image grâce à u
 
 ##  GUIDE D’INSTALLATION
 
-### 1. En local
+### 1.a En local linux ou mac
 
 ```bash
-git clone https://github.com/TonUtilisateur/object-detector-streamlit.git
 cd object-detector-streamlit
 chmod +x deploy_local.sh
 ./deploy_local.sh
 ```
 
+### 1.b En local windows
+```bash
+python -m venv venv
+venv\\Scripts\\activate
+pip install --upgrade pip
+pip install -r requirements.txt
+streamlit run app.py
+```
 ### 2. Sur GitHub
 
 1. Crée un dépôt `object-detector-streamlit`
@@ -49,6 +49,14 @@ git push -u origin main
 ```
 
 ### 3. Sur Streamlit Cloud
+
+- Attention sur streamlit : Dans le code on utilise "from ultralytics import YOLO",Or, Ultralytics/YOLOv8 télécharge automatiquement un modèle (yolov8n.pt) au premier lancement, ce que Streamlit Cloud n’autorise pas directement (pas d’écriture disque autorisée à certains endroits, ni de heavy download dynamique).
+
+Une solution rapide serait de : changer l’approche IA pour un modèle d’analyse de contenu image léger et cloud-friendly (comme imageai, torchvision, transformers, ou même OpenAI/CLIP si besoin d’alternatives cloud safe).
+
+Simplement pour le projet je prefere le laisser en local pour bien comprendre le fonctionnement
+
+Si vous opter pour la solution rapide voici les étapes à suivre aprés la modification du code : 
 
 - Va sur https://streamlit.io/cloud
 - Clique sur “New app”
