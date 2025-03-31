@@ -42,7 +42,7 @@ streamlit run app.py
 ```bash
 git init
 git add .
-git commit -m "🎯 Détecteur d’objets Streamlit"
+git commit -m "Détecteur d’objets Streamlit"
 git branch -M main
 git remote add origin https://github.com/TonUtilisateur/object-detector-streamlit.git
 git push -u origin main
